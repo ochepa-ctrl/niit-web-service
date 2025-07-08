@@ -14,4 +14,11 @@ public class Grade {
     private Student student;
     private double score;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
