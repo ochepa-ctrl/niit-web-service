@@ -1,9 +1,12 @@
 package com.javalord.niit_web_service.niit_web_service.controller;
 
-import com.javalord.niit_web_service.niit_web_service.model.Student;
+import com.javalord.niit_web_service.niit_web_service.model.entity.Student;
+import com.javalord.niit_web_service.niit_web_service.model.request.CreateStudent;
 import com.javalord.niit_web_service.niit_web_service.service.StudentService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,24 +22,28 @@ public class StudentApiController {
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student newStudent) {
+    public ResponseEntity<?> createStudent(@RequestBody @Valid CreateStudent newStudent) {
         Student student = studentService.createStudent(newStudent);
 
-        return student;
+        return ResponseEntity.ok(student);
     }
 
     @GetMapping(value = "/{studentId}")
-    public Student findStudentById(@PathVariable(value = "studentId") int id) {
+    public ResponseEntity<?> findStudentById(@PathVariable(value = "studentId") int id) {
         Student student = studentService.findStudentById(id);
 
-        return student;
+        if (student == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(student);
     }
 
     @GetMapping
-    public List<Student> findAllStudents() {
+    public ResponseEntity<?>  findAllStudents() {
         List<Student> students = studentService.findAllStudents();
 
-        return students;
+        return ResponseEntity.ok(students);
     }
 
     @PostMapping(value = "/{studentId}/courses")
