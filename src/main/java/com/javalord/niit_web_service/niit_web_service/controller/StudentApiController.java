@@ -1,6 +1,7 @@
 package com.javalord.niit_web_service.niit_web_service.controller;
 
-import com.javalord.niit_web_service.niit_web_service.model.Student;
+import com.javalord.niit_web_service.niit_web_service.model.entity.Student;
+import com.javalord.niit_web_service.niit_web_service.model.request.CreateStudent;
 import com.javalord.niit_web_service.niit_web_service.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +20,11 @@ public class StudentApiController {
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student newStudent) {
-        Student student = studentService.createStudent(newStudent);
+    public String addStudent(@RequestBody CreateStudent createStudent) {
+        Student student = new Student();
+        return "Added successfully";
 
-        return student;
+
     }
 
     @GetMapping(value = "/{studentId}")
@@ -46,3 +48,6 @@ public class StudentApiController {
     }
 }
 
+//Entity
+//Request
+//Response

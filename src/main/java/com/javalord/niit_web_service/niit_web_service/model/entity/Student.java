@@ -1,4 +1,4 @@
-package com.javalord.niit_web_service.niit_web_service.model;
+package com.javalord.niit_web_service.niit_web_service.model.entity;
 
 import jakarta.persistence.*;
 

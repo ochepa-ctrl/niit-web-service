@@ -1,8 +1,10 @@
 package com.javalord.niit_web_service.niit_web_service.service;
 
-import com.javalord.niit_web_service.niit_web_service.model.Student;
+import com.javalord.niit_web_service.niit_web_service.model.entity.Student;
+import com.javalord.niit_web_service.niit_web_service.model.request.CreateStudent;
 import com.javalord.niit_web_service.niit_web_service.repository.StudentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -15,8 +17,9 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student createStudent(Student newStudent) {
-        return studentRepository.save(newStudent);
+    public Student createStudent() {
+        Student student = createStudent();
+        return studentRepository.save(student);
     }
 
     public Student findStudentById(int id) {
